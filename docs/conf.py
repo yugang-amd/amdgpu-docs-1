@@ -1,5 +1,7 @@
 """Configuration file for the Sphinx documentation builder."""
 import os
+from pathlib import Path
+import shutil
 
 html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "instinct.docs.amd.com")
 html_context = {}
@@ -45,6 +47,7 @@ html_theme_options = {
     "flavor": "amdgpu",
     "announcement": f"<a id='rocm-banner' href='https://instinct.docs.amd.com/projects/amdgpu-docs/en/31.20.0-preview/'>AMD GPU Driver 31.20.0</a> is a technology preview intended for use only with <a id='rocm-banner' href='https://rocm.docs.amd.com/en/7.12.0-preview/index.html'>AMD ROCm 7.12.0 technology preview</a>. For production use, continue to use AMD GPU Driver {version} documentation.",
     "link_main_doc": True,
+    "use_download_button": True,
     # Add any additional theme options here
 }
 extensions = [
@@ -57,6 +60,57 @@ extensions = [
 external_toc_path = "./sphinx/_toc.yml"
 
 exclude_patterns = ['.venv']
+
+EXCLUDED_DIRS = {
+    "_build",
+    "_templates",
+    "_static",
+    ".git",
+    ".venv",
+}
+
+def should_skip(path: Path) -> bool:
+    return any(part in EXCLUDED_DIRS for part in path.parts)
+
+
+def generate_combined_markdown(app, exception):
+    if exception:
+        return
+
+    docs_root = Path(app.srcdir)
+    output_file = Path(app.outdir) / "llms.txt"
+
+    print(output_file)
+
+    all_files = sorted(docs_root.rglob("*.md"))
+
+    combined = []
+    combined.append("# Combined Documentation\n")
+
+    for doc_file in all_files:
+        if should_skip(doc_file):
+            continue
+
+        relative = doc_file.relative_to(docs_root)
+
+        combined.append(f"\n---\n")
+        combined.append(f"\n# {relative}\n")
+
+        try:
+            content = doc_file.read_text(encoding="utf-8")
+            combined.append(content)
+            combined.append("\n")
+
+        except Exception as e:
+            combined.append(f"\n[ERROR reading file: {e}]\n")
+
+    output_file.write_text(
+        "\n".join(combined),
+        encoding="utf-8",
+    )
+
+def setup(app):
+    app.connect("build-finished", generate_combined_markdown)
 
 # Add the following replacements to every RST file.
 rst_prolog = f"""
