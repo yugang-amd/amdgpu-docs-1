@@ -1,0 +1,30 @@
+# AMD GPU Driver (amdgpu)
+
+> Install, configure, and optimize the AMD GPU driver (amdgpu) for AMD Instinct and Radeon GPUs on Linux. Covers package manager installation across major distributions, post-install steps, system optimization tuning guides for MI300X and MI300A, GPU partitioning, and conceptual reference for IOMMU, PCIe atomics, and resource oversubscription.
+
+## Install AMD GPU Driver
+
+- [Prerequisites](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/install/detailed-install/prerequisites.html): System requirements and prerequisites before installing the AMD GPU driver, including kernel version and dependency checks.
+- [Install via package manager](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/install/package-manager-index.html): Install the AMD GPU driver using native package managers on Ubuntu, Debian, RHEL, Oracle Linux, Rocky Linux, and SUSE Linux Enterprise Server.
+- [Post-install instructions](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/install/detailed-install/post-install.html): Configure user groups, verify driver loading, and complete required post-installation steps after installing the AMD GPU driver.
+
+## How to
+
+- [System optimization](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/system-optimization/index.html): Hardware and OS tuning guides for AMD Instinct GPU workloads, including BIOS settings, GRUB configuration, NBIO tuning, and environment variable recommendations.
+- [MI300X system optimization](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/system-optimization/mi300x.html): AMD Instinct MI300X-specific system settings for HPC and AI workloads, including BIOS, NBIO, and ROCm environment variable tuning.
+- [MI300A system optimization](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/system-optimization/mi300a.html): AMD Instinct MI300A APU-specific system tuning for high-performance computing workloads.
+- [MI200 system optimization](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/system-optimization/mi200.html): Performance and system tuning guide for AMD Instinct MI200 series GPUs.
+- [MI100 system optimization](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/system-optimization/mi100.html): Performance and system tuning guide for AMD Instinct MI100 GPUs.
+- [MI300X GPU partitioning overview](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/gpu-partitioning/mi300x/overview.html): Overview of GPU partitioning capabilities on AMD Instinct MI300X, including partition modes and resource isolation.
+- [MI300X GPU partitioning requirements](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/gpu-partitioning/mi300x/requirements.html): Hardware and software requirements for enabling GPU partitioning on AMD Instinct MI300X.
+- [MI300X GPU partitioning quick start](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/gpu-partitioning/mi300x/quick-start-guide.html): Step-by-step guide to configuring and activating GPU partitioning on AMD Instinct MI300X.
+- [MI300X GPU partitioning troubleshooting](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/gpu-partitioning/mi300x/troubleshooting.html): Diagnose and resolve common issues when configuring GPU partitioning on AMD Instinct MI300X.
+- [MI300A GPU partitioning overview](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/gpu-partitioning/mi300a/overview.html): Overview of GPU partitioning on the AMD Instinct MI300A APU.
+
+## Conceptual
+
+- [IOMMU](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/conceptual/iommu.html): How Input-Output Memory Management Unit (IOMMU) affects AMD GPU DMA operations, PCIe topology, and xGMI configurations.
+- [PCIe atomics](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/conceptual/pcie-atomics.html): PCIe atomic operations support in ROCm and their role in GPU peer-to-peer communication.
+- [Oversubscription](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/conceptual/oversubscription.html): Considerations and tradeoffs when oversubscribing hardware resources with AMD GPU workloads.
+
+---
